@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #0b0e13;
+  color: #e8eaed;
+}
+
+body {
+  font-feature-settings: "ss01", "cv01";
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(1200px 600px at 80% -10%, rgba(0, 173, 216, 0.08), transparent 60%),
+    radial-gradient(900px 500px at 0% 0%, rgba(248, 152, 32, 0.07), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(248, 152, 32, 0.3);
+}
+
+/* Thin custom scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #2a323f transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #2a323f;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-ink-800/70 backdrop-blur-sm shadow-card;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-java/60 bg-java text-ink-900 hover:bg-java-deep hover:shadow-glow;
+  }
+  .btn-go {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-go/60 bg-go text-ink-900 hover:bg-go-deep hover:shadow-glow-go;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-java/60 border border-line bg-ink-700/60 text-fog hover:bg-ink-600;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-line bg-ink-700/70 px-2.5 py-1 text-xs font-medium text-fog-dim;
+  }
+  .input {
+    @apply w-full rounded-xl border border-line bg-ink-900/70 px-4 py-3 text-fog placeholder:text-fog-faint outline-none focus:border-java/70 focus:ring-2 focus:ring-java/30 transition;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
