@@ -121,14 +121,19 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ stdout, stderr, passed }, { status: 200 });
   } catch (err) {
-    // LOG TEMPORÁRIO: olhe os Function Logs na Vercel para ver a causa real.
     console.error("Erro ao contatar glot.io:", err);
+    // DEBUG TEMPORÁRIO: inclui a mensagem de erro real na resposta.
+    // Remover o campo "debug" depois de identificar a causa.
+    const message = err instanceof Error ? err.message : String(err);
+    const cause =
+      err instanceof Error && err.cause ? String(err.cause) : undefined;
     return NextResponse.json(
       {
         stdout: "",
         stderr: "",
         passed: false,
         error: "Falha ao contatar o serviço de execução.",
+        debug: { message, cause },
       },
       { status: 200 },
     );
