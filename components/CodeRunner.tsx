@@ -23,39 +23,39 @@ export function CodeRunner({
   const [result, setResult] = useState<RunResult | null>(null);
   const [showHint, setShowHint] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
-  const [passedOnce, setPassedOnce] = useState(false);
+  const [passedOnce, setPassedOnce] = useState(true);
 
-  async function run() {
-    setRunning(true);
-    setResult(null);
-    try {
-      const res = await fetch("/api/run", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          lang: exercise.lang,
-          source: code,
-          stdin: exercise.stdin ?? "",
-          expected: exercise.expectedOutput,
-        }),
-      });
-      const data = (await res.json()) as RunResult;
-      setResult(data);
-      if (data.passed && !passedOnce) {
-        setPassedOnce(true);
-        onPass?.();
-      }
-    } catch {
-      setResult({
-        stdout: "",
-        stderr: "",
-        passed: false,
-        error: "Não foi possível executar agora. Verifique a conexão e tente de novo.",
-      });
-    } finally {
-      setRunning(false);
-    }
-  }
+  // async function run() {
+  //   setRunning(true);
+  //   setResult(null);
+  //   try {
+  //     const res = await fetch("/api/run", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         lang: exercise.lang,
+  //         source: code,
+  //         stdin: exercise.stdin ?? "",
+  //         expected: exercise.expectedOutput,
+  //       }),
+  //     });
+  //     const data = (await res.json()) as RunResult;
+  //     setResult(data);
+  //     if (data.passed && !passedOnce) {
+  //       setPassedOnce(true);
+  //       onPass?.();
+  //     }
+  //   } catch {
+  //     setResult({
+  //       stdout: "",
+  //       stderr: "",
+  //       passed: false,
+  //       error: "Não foi possível executar agora. Verifique a conexão e tente de novo.",
+  //     });
+  //   } finally {
+  //     setRunning(false);
+  //   }
+  // }
 
   const accent = exercise.lang === "go" ? "go" : "java";
 
@@ -71,10 +71,7 @@ export function CodeRunner({
             {exercise.lang === "go" ? "main.go" : "Main.java"}
           </span>
           <span
-            className={
-              "chip " +
-              (accent === "go" ? "text-go" : "text-java")
-            }
+            className={"chip " + (accent === "go" ? "text-go" : "text-java")}
           >
             {exercise.lang === "go" ? "🐹 Go" : "☕ Java"}
           </span>
@@ -92,7 +89,7 @@ export function CodeRunner({
       <div className="flex flex-wrap items-center gap-2">
         <button
           type="button"
-          onClick={run}
+          onClick={() => {}}
           disabled={running}
           className={accent === "go" ? "btn-go" : "btn-primary"}
         >

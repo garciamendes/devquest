@@ -116,9 +116,7 @@ export function LessonView({
         <div className="mb-2 flex flex-wrap items-center gap-2 text-sm">
           <span className="chip">⏱ {lesson.minutes} min</span>
           <span
-            className={
-              "chip " + (accent === "go" ? "text-go" : "text-java")
-            }
+            className={"chip " + (accent === "go" ? "text-go" : "text-java")}
           >
             +{lesson.xp} XP
           </span>
@@ -165,7 +163,7 @@ export function LessonView({
         </section>
       )}
 
-      {lesson.exercise && (
+      {/*{lesson.exercise && (
         <section className="mt-10">
           <h2 className="mb-4 font-display text-lg font-semibold text-fog">
             Prática (correção automática)
@@ -175,7 +173,7 @@ export function LessonView({
             onPass={() => setExercisePassed(true)}
           />
         </section>
-      )}
+      )}*/}
 
       <section className="mt-12 border-t border-line pt-8">
         {celebration ? (
@@ -218,9 +216,7 @@ export function LessonView({
           </div>
         ) : done ? (
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <span className="text-fog-dim">
-              Você já concluiu esta lição. ✓
-            </span>
+            <span className="text-fog-dim">Você já concluiu esta lição. ✓</span>
             <div className="flex gap-3">
               {nextHref && (
                 <Link href={nextHref} className={accentBtn}>

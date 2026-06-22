@@ -31,9 +31,9 @@ export default async function LessonPage({
   const completed = new Set(state.completedLessons);
 
   // Keep progression linear: bounce locked lessons back to the track.
-  if (!isLessonUnlocked(lessonId, completed)) {
-    redirect(`/trilha/${loc.track.id}`);
-  }
+  // if (!isLessonUnlocked(lessonId, completed)) {
+  //   redirect(`/trilha/${loc.track.id}`);
+  // }
 
   const next = nextLessonId(lessonId);
 
