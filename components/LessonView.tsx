@@ -237,10 +237,11 @@ export function LessonView({
                   : "Responda o quiz para concluir."}
               </p>
             )}
+
             <button
               type="button"
               onClick={handleComplete}
-              disabled={!canComplete || saving}
+              disabled={saving}
               className={accentBtn}
             >
               {saving ? "Salvando…" : `Concluir lição (+${lesson.xp} XP)`}
